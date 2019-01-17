@@ -1,0 +1,21 @@
+library(ggplot2)
+library(RColorBrewer)
+
+exp = "e1"
+load("unipm.RData")
+col = c("#f39237", "#1c77c3")
+p = ggplot(unipm, aes(x=V1, y = V3, group = V2))
+p = p + scale_color_manual(labels = c("EGFRhi", "EGFRlo"), values = col)
+p = p + scale_fill_manual(labels = c("EGFRhi", "EGFRlo"), values = col)
+p = p + geom_ribbon(aes(ymin = V4, ymax = V5, fill = V2), alpha = .3)
+p = p + geom_line(aes(color = V2))
+p = p + labs(title = "Growth confidence interval", x = "time point", y = "number of cells", color = "Subpopulation", fill = "Subpopulation")
+p = p + theme_minimal()
+p = p + theme(axis.text.x = element_text(size=12))
+p = p + theme(axis.text.y = element_text(size=12))
+p = p + theme(axis.title.x = element_text(size=16, face = "bold"))
+p = p + theme(axis.title.y = element_text(size=16, face = "bold"))
+
+png(paste(exp, ".png", sep = ""), width = 6000, height = 3000, type = "cairo-png", res = 400)
+plot(p)
+dev.off()
