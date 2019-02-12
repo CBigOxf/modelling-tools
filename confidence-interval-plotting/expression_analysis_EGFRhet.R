@@ -1,12 +1,11 @@
 library(reshape2)
-library(foreach)
-library(doParallel)
 library(ggplot2)
 library(RColorBrewer)
 
 
 setwd("D:/universidad/Buffa/egfr_het/outputs")
-exp = "d11ex"
+setwd("C:/Users/pvictori/Buffa/egfr_het/outputs")
+exp = "d12ex"
 filename = paste(exp,".csv", sep = "")
 number_of_groups = 2
 lines_to_skip = 34
